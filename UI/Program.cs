@@ -1,6 +1,12 @@
 using System.Reflection;
 using AutoMapper;
+using DAL.Implementations;
+using DAL.Interfaces;
+using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using Service.AutoMapper;
+using Service.Implementations;
+using Service.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +27,24 @@ var mapperConfig = new MapperConfiguration(mc =>
 });
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
+
+// Configure DbContext
+builder.Services.AddDbContext<LaboratoryContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+// DI for DAL layer
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IDeviceRepository, DeviceRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IStatusRepository, StatusRepository>();
+
+// DI for Service layer
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IDeviceService, DeviceService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IStatusService, StatusService>();
+
 
 var app = builder.Build();
 

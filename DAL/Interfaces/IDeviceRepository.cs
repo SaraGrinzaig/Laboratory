@@ -11,7 +11,7 @@ namespace DAL.Interfaces
     {
         IEnumerable<Device> GetAllDevices();
         Device GetDeviceById(int id);
-        void AddDevice(Device device);
+        void InsertDevice(Device device);
         void DeleteDevice(int id);
         void UpdateDevice(Device device);
         void Save();

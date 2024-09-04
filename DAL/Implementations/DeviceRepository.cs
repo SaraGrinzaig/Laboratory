@@ -23,7 +23,7 @@ namespace DAL.Implementations
             return _context.Devices.Find(id);
         }
 
-        public void AddDevice(Device device)
+        public void InsertDevice(Device device)
         {
             _context.Devices.Add(device);
         }
