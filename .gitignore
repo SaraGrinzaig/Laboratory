@@ -1,0 +1,54 @@
+# Visual Studio related files
+.vscode/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Core build files
+bin/
+obj/
+*.log
+*.pidb
+*.suo
+*.user
+*.userprefs
+*.tlog
+*.rsuser
+*.cache
+*.ilk
+*.pdb
+*.ipch
+*.aps
+*.ncb
+*.sdf
+*.opensdf
+*.sln.docstates
+
+# NuGet packages
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NPM and Yarn packages
+node_modules/
+yarn.lock
+npm-debug.log
+yarn-error.log
+
+# Log files
+*.log
+
+# Azure and Docker related files
+.env
+.dockerignore
+Dockerfile
+docker-compose*
+
+# Add this line to your .gitignore
+DAL/DB/*.mdf
+DAL/DB/*.ldf
+
