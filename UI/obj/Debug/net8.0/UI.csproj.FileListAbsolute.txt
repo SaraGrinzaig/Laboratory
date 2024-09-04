@@ -284,3 +284,4 @@ C:\Users\This User\Desktop\Laboratory\UI\obj\Debug\net8.0\UI.pdb
 C:\Users\This User\Desktop\Laboratory\UI\obj\Debug\net8.0\UI.genruntimeconfig.cache
 C:\Users\This User\Desktop\Laboratory\UI\obj\Debug\net8.0\ref\UI.dll
 C:\Users\This User\Desktop\קניון ליין\Laboratory\UI\obj\Debug\net8.0\UI.sourcelink.json
+C:\Users\This User\Desktop\קניון ליין\Laboratory\UI\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
