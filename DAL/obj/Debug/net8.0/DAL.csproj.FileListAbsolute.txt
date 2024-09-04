@@ -12,3 +12,19 @@ C:\Users\This User\Desktop\קניון ליין\Laboratory\DAL\obj\Debug\net8.0\r
 C:\Users\This User\Desktop\קניון ליין\Laboratory\DAL\obj\Debug\net8.0\DAL.pdb
 C:\Users\This User\Desktop\קניון ליין\Laboratory\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
 C:\Users\This User\Desktop\קניון ליין\Laboratory\DAL\obj\Debug\net8.0\ref\DAL.dll
+C:\Users\This User\Desktop\Laboratory\DAL\bin\Debug\net8.0\DAL.deps.json
+C:\Users\This User\Desktop\Laboratory\DAL\bin\Debug\net8.0\DAL.runtimeconfig.json
+C:\Users\This User\Desktop\Laboratory\DAL\bin\Debug\net8.0\DAL.dll
+C:\Users\This User\Desktop\Laboratory\DAL\bin\Debug\net8.0\DAL.pdb
+C:\Users\This User\Desktop\Laboratory\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+C:\Users\This User\Desktop\Laboratory\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\This User\Desktop\Laboratory\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+C:\Users\This User\Desktop\Laboratory\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+C:\Users\This User\Desktop\Laboratory\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\This User\Desktop\Laboratory\DAL\obj\Debug\net8.0\DAL.sourcelink.json
+C:\Users\This User\Desktop\Laboratory\DAL\obj\Debug\net8.0\DAL.dll
+C:\Users\This User\Desktop\Laboratory\DAL\obj\Debug\net8.0\refint\DAL.dll
+C:\Users\This User\Desktop\Laboratory\DAL\obj\Debug\net8.0\DAL.pdb
+C:\Users\This User\Desktop\Laboratory\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
+C:\Users\This User\Desktop\Laboratory\DAL\obj\Debug\net8.0\ref\DAL.dll
+C:\Users\This User\Desktop\קניון ליין\Laboratory\DAL\obj\Debug\net8.0\DAL.sourcelink.json
