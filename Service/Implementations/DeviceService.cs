@@ -29,11 +29,13 @@ namespace Service.Implementations
             return _mapper.Map<DeviceDto>(device);
         }
 
-        public void CreateDevice(DeviceDto deviceDto)
+        public DeviceDto CreateDevice(DeviceDto deviceDto)
         {
             var device = _mapper.Map<Device>(deviceDto);
             _deviceRepository.InsertDevice(device);
             _deviceRepository.Save();
+            return _mapper.Map<DeviceDto>(device);
+
         }
 
         public void UpdateDevice(DeviceDto deviceDto)

@@ -6,7 +6,7 @@ namespace Service.Interfaces
     {
         IEnumerable<DeviceDto> GetAllDevices();
         DeviceDto GetDeviceById(int deviceId);
-        void CreateDevice(DeviceDto device);
+        DeviceDto CreateDevice(DeviceDto device);
         void UpdateDevice(DeviceDto device);
         void DeleteDevice(int deviceId);
     }
