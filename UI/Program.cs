@@ -4,6 +4,7 @@ using DAL.Implementations;
 using DAL.Interfaces;
 using DAL.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Service.AutoMapper;
 using Service.Implementations;
 using Service.Interfaces;
@@ -12,6 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+});
+
 
 // Add CORS policy
 builder.Services.AddCors(options =>

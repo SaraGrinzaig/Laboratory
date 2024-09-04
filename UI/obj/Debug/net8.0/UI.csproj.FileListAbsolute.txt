@@ -285,3 +285,8 @@ C:\Users\This User\Desktop\Laboratory\UI\obj\Debug\net8.0\UI.genruntimeconfig.ca
 C:\Users\This User\Desktop\Laboratory\UI\obj\Debug\net8.0\ref\UI.dll
 C:\Users\This User\Desktop\קניון ליין\Laboratory\UI\obj\Debug\net8.0\UI.sourcelink.json
 C:\Users\This User\Desktop\קניון ליין\Laboratory\UI\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\This User\Desktop\קניון ליין\Laboratory\UI\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\This User\Desktop\קניון ליין\Laboratory\UI\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\This User\Desktop\קניון ליין\Laboratory\UI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\This User\Desktop\קניון ליין\Laboratory\UI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\This User\Desktop\קניון ליין\Laboratory\UI\obj\Debug\net8.0\UI.MvcApplicationPartsAssemblyInfo.cs

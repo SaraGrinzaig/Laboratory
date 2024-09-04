@@ -6,7 +6,7 @@ namespace Service.Interfaces
     {
         IEnumerable<CustomerDto> GetAllCustomers();
         CustomerDto GetCustomerById(int customerId);
-        void CreateCustomer(CustomerDto customer);
+        CustomerDto CreateCustomer(CustomerDto customer);
         void UpdateCustomer(CustomerDto customer);
         void DeleteCustomer(int customerId);
     }

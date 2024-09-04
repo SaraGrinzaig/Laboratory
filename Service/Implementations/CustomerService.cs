@@ -29,11 +29,12 @@ namespace Service.Implementations
             return _mapper.Map<CustomerDto>(customer);
         }
 
-        public void CreateCustomer(CustomerDto customerDto)
+        public CustomerDto CreateCustomer(CustomerDto customerDto)
         {
             var customer = _mapper.Map<Customer>(customerDto);
             _customerRepository.InsertCustomer(customer);
             _customerRepository.Save();
+            return _mapper.Map<CustomerDto>(customer);
         }
 
         public void UpdateCustomer(CustomerDto customerDto)
