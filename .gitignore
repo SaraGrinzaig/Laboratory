@@ -1,0 +1,74 @@
+# Visual Studio related files
+.vscode/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.csproj.user
+
+# ASP.NET Core build files
+bin/
+obj/
+*.log
+*.pidb
+*.suo
+*.user
+*.userprefs
+*.tlog
+*.rsuser
+*.cache
+*.ilk
+*.pdb
+*.ipch
+*.aps
+*.ncb
+*.sdf
+*.opensdf
+*.sln.docstates
+*.exe
+*.dll
+*.config
+*.manifest
+*.runtimeconfig.json
+
+# NuGet packages
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NPM and Yarn packages
+node_modules/
+yarn.lock
+npm-debug.log
+yarn-error.log
+
+# Log files
+*.log
+
+# Azure and Docker related files
+.env
+.dockerignore
+Dockerfile
+docker-compose*
+
+# Database files
+DAL/DB/*.mdf
+DAL/DB/*.ldf
+
+# Rider related files
+.idea/
+
+# JetBrains Rider related files
+*.idea/
+*.idea_modules/
+
+# Executable files
+*.exe
+*.dll
+*.config
+
+# Additional macOS related files
+.DS_Store
