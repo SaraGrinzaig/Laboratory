@@ -38,7 +38,7 @@ namespace DAL.Repositories
             var existingStatusType = _context.StatusTypes.Find(statusType.Id);
             if (existingStatusType != null)
             {
-                _context.Entry(existingStatusType).State = EntityState.Modified;
+                _context.Entry(existingStatusType).CurrentValues.SetValues(statusType);
             }
         }
 

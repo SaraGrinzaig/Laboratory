@@ -42,7 +42,7 @@ namespace DAL.Implementations
             var existingStatus = _context.Statuses.Find(status.Id);
             if (existingStatus != null)
             {
-                _context.Entry(existingStatus).State = EntityState.Modified;
+                _context.Entry(existingStatus).CurrentValues.SetValues(status);
             }
         }
 
