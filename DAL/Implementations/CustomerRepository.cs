@@ -6,7 +6,7 @@ namespace DAL.Implementations
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private LaboratoryContext _context;
+        private readonly LaboratoryContext _context;
 
         public CustomerRepository(LaboratoryContext context)
         {
@@ -30,7 +30,7 @@ namespace DAL.Implementations
 
         public void DeleteCustomer(int customerId)
         {
-            Customer customer = _context.Customers.Find(customerId);
+            var customer = _context.Customers.Find(customerId);
             if (customer != null)
             {
                 _context.Customers.Remove(customer);
@@ -39,7 +39,11 @@ namespace DAL.Implementations
 
         public void UpdateCustomer(Customer customer)
         {
-            _context.Entry(customer).State = EntityState.Modified;
+            var existingCustomer = _context.Customers.Find(customer.Id);
+            if (existingCustomer != null)
+            {
+                _context.Entry(existingCustomer).CurrentValues.SetValues(customer);
+            }
         }
 
         public void Save()

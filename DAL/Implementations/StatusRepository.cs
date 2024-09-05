@@ -1,17 +1,12 @@
 ﻿using DAL.Interfaces;
 using DAL.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
     public class StatusRepository : IStatusRepository
     {
-        private LaboratoryContext _context;
+        private readonly LaboratoryContext _context;
 
         public StatusRepository(LaboratoryContext context)
         {
@@ -35,7 +30,7 @@ namespace DAL.Implementations
 
         public void DeleteStatus(int statusId)
         {
-            Status status = _context.Statuses.Find(statusId);
+            var status = _context.Statuses.Find(statusId);
             if (status != null)
             {
                 _context.Statuses.Remove(status);
@@ -44,7 +39,11 @@ namespace DAL.Implementations
 
         public void UpdateStatus(Status status)
         {
-            _context.Entry(status).State = EntityState.Modified;
+            var existingStatus = _context.Statuses.Find(status.Id);
+            if (existingStatus != null)
+            {
+                _context.Entry(existingStatus).State = EntityState.Modified;
+            }
         }
 
         public void Save()

@@ -1,17 +1,12 @@
 ﻿using DAL.Interfaces;
 using DAL.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
     public class OrderRepository : IOrderRepository
     {
-        private LaboratoryContext _context;
+        private readonly LaboratoryContext _context;
 
         public OrderRepository(LaboratoryContext context)
         {
@@ -35,7 +30,7 @@ namespace DAL.Implementations
 
         public void DeleteOrder(int orderId)
         {
-            Order order = _context.Orders.Find(orderId);
+            var order = _context.Orders.Find(orderId);
             if (order != null)
             {
                 _context.Orders.Remove(order);
@@ -44,7 +39,11 @@ namespace DAL.Implementations
 
         public void UpdateOrder(Order order)
         {
-            _context.Entry(order).State = EntityState.Modified;
+            var existingOrder = _context.Orders.Find(order.Id);
+            if (existingOrder != null)
+            {
+                _context.Entry(existingOrder).CurrentValues.SetValues(order);
+            }
         }
 
         public void Save()

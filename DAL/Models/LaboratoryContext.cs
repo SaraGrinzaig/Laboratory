@@ -16,13 +16,9 @@ public partial class LaboratoryContext : DbContext
     }
 
     public virtual DbSet<Customer> Customers { get; set; }
-
     public virtual DbSet<Device> Devices { get; set; }
-
     public virtual DbSet<Order> Orders { get; set; }
-
     public virtual DbSet<Status> Statuses { get; set; }
-
     public virtual DbSet<StatusType> StatusTypes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -78,6 +74,19 @@ public partial class LaboratoryContext : DbContext
                 .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Devices__Custome__4BAC3F29");
+
+            // הוספת מחיקת Cascade עבור הזמנות וסטטוסים
+            entity.HasMany(d => d.Statuses)
+                .WithOne(s => s.Device)
+                .HasForeignKey(s => s.DeviceId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__Statuses__Device__5535A963");
+
+            entity.HasMany(d => d.Orders)
+                .WithOne(o => o.Device)
+                .HasForeignKey(o => o.DeviceId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__Orders__DeviceId__59FA5E80");
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -90,11 +99,6 @@ public partial class LaboratoryContext : DbContext
             entity.Property(e => e.OrderDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-
-            entity.HasOne(d => d.Device).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.DeviceId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Orders__DeviceId__59FA5E80");
         });
 
         modelBuilder.Entity<Status>(entity =>
@@ -104,11 +108,6 @@ public partial class LaboratoryContext : DbContext
             entity.Property(e => e.StatusChangeDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-
-            entity.HasOne(d => d.Device).WithMany(p => p.Statuses)
-                .HasForeignKey(d => d.DeviceId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Statuses__Device__5535A963");
 
             entity.HasOne(d => d.StatusNavigation).WithMany(p => p.Statuses)
                 .HasForeignKey(d => d.StatusId)

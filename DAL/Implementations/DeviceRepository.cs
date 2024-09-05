@@ -6,7 +6,7 @@ namespace DAL.Implementations
 {
     public class DeviceRepository : IDeviceRepository
     {
-        private LaboratoryContext _context;
+        private readonly LaboratoryContext _context;
 
         public DeviceRepository(LaboratoryContext context)
         {
@@ -30,13 +30,20 @@ namespace DAL.Implementations
 
         public void DeleteDevice(int id)
         {
-            Device device = _context.Devices.Find(id);
-            _context.Devices.Remove(device);
+            var device = _context.Devices.Find(id);
+            if (device != null)
+            {
+                _context.Devices.Remove(device);
+            }
         }
 
         public void UpdateDevice(Device device)
         {
-            _context.Entry(device).State = EntityState.Modified;
+            var existingDevice = _context.Devices.Find(device.Id);
+            if (existingDevice != null)
+            {
+                _context.Entry(existingDevice).CurrentValues.SetValues(device);
+            }
         }
 
         public void Save()

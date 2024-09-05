@@ -1,8 +1,6 @@
 ﻿using DAL.Interfaces;
 using DAL.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace DAL.Repositories
 {
@@ -37,7 +35,11 @@ namespace DAL.Repositories
 
         public void UpdateStatusType(StatusType statusType)
         {
-            _context.Entry(statusType).State = EntityState.Modified;
+            var existingStatusType = _context.StatusTypes.Find(statusType.Id);
+            if (existingStatusType != null)
+            {
+                _context.Entry(existingStatusType).State = EntityState.Modified;
+            }
         }
 
         public void DeleteStatusType(int id)
