@@ -9,11 +9,15 @@ namespace Service.Implementations
     public class DeviceService : IDeviceService
     {
         private readonly IDeviceRepository _deviceRepository;
+        private readonly IStatusRepository _statusRepository;
+        private readonly IStatusTypeRepository _statusTypeRepository;
         private readonly IMapper _mapper;
 
-        public DeviceService(IDeviceRepository deviceRepository, IMapper mapper)
+        public DeviceService(IDeviceRepository deviceRepository, IStatusRepository statusRepository, IStatusTypeRepository statusTypeRepository, IMapper mapper)
         {
             _deviceRepository = deviceRepository;
+            _statusRepository = statusRepository;
+            _statusTypeRepository = statusTypeRepository;
             _mapper = mapper;
         }
 
@@ -33,10 +37,27 @@ namespace Service.Implementations
         {
             var device = _mapper.Map<Device>(deviceDto);
             _deviceRepository.InsertDevice(device);
-            _deviceRepository.Save();
-            return _mapper.Map<DeviceDto>(device);
+            _deviceRepository.Save(); // שמירת השינויים - המכשיר נשמר וה-Id נוצר
 
+            var entryStatusType = _statusTypeRepository.GetByName("נכנס");
+            if (entryStatusType == null)
+            {
+                throw new Exception("Status type 'נכנס' not found in the system.");
+            }
+
+            var status = new Status
+            {
+                DeviceId = device.Id, // משתמש ב-Id של המכשיר שנוצר זה עתה
+                StatusId = entryStatusType.Id, // סטטוס ברירת המחדל "נכנס"
+                StatusChangeDate = DateTime.Now
+            };
+
+            _statusRepository.InsertStatus(status);
+            _statusRepository.Save();
+
+            return _mapper.Map<DeviceDto>(device);
         }
+
 
         public void UpdateDevice(DeviceDto deviceDto)
         {
@@ -52,4 +73,3 @@ namespace Service.Implementations
         }
     }
 }
-

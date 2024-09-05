@@ -3,6 +3,7 @@ using AutoMapper;
 using DAL.Implementations;
 using DAL.Interfaces;
 using DAL.Models;
+using DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Service.AutoMapper;
@@ -45,6 +46,7 @@ builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IDeviceRepository, DeviceRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IStatusRepository, StatusRepository>();
+builder.Services.AddScoped<IStatusTypeRepository, StatusTypeRepository>();
 
 // DI for Service layer
 builder.Services.AddScoped<ICustomerService, CustomerService>();
