@@ -29,11 +29,12 @@ namespace Service.Implementations
             return _mapper.Map<StatusDto>(status);
         }
 
-        public void CreateStatus(StatusDto statusDto)
+        public StatusDto CreateStatus(StatusDto statusDto)
         {
             var status = _mapper.Map<Status>(statusDto);
             _statusRepository.InsertStatus(status);
             _statusRepository.Save();
+            return _mapper.Map<StatusDto>(status);
         }
 
         public void UpdateStatus(StatusDto statusDto)

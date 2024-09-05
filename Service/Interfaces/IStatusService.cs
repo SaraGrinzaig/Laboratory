@@ -6,7 +6,7 @@ namespace Service.Interfaces
     {
         IEnumerable<StatusDto> GetAllStatuses();
         StatusDto GetStatusById(int statusId);
-        void CreateStatus(StatusDto status);
+        StatusDto CreateStatus(StatusDto status);
         void UpdateStatus(StatusDto status);
         void DeleteStatus(int statusId);
     }

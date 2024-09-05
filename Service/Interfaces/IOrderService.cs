@@ -6,7 +6,7 @@ namespace Service.Interfaces
     {
         IEnumerable<OrderDto> GetAllOrders();
         OrderDto GetOrderById(int orderId);
-        void CreateOrder(OrderDto order);
+        OrderDto CreateOrder(OrderDto order);
         void UpdateOrder(OrderDto order);
         void DeleteOrder(int orderId);
     }

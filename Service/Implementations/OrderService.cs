@@ -29,11 +29,12 @@ namespace Service.Implementations
             return _mapper.Map<OrderDto>(order);
         }
 
-        public void CreateOrder(OrderDto orderDto)
+        public OrderDto CreateOrder(OrderDto orderDto)
         {
             var order = _mapper.Map<Order>(orderDto);
             _orderRepository.InsertOrder(order);
             _orderRepository.Save();
+            return _mapper.Map<OrderDto>(order);
         }
 
         public void UpdateOrder(OrderDto orderDto)
