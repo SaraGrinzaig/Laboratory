@@ -9,6 +9,7 @@ namespace Service.Interfaces
         StatusDto CreateStatus(StatusDto status);
         void UpdateStatus(StatusDto status);
         void DeleteStatus(int statusId);
+        StatusDto GetCurrentStatusForDevice(int deviceId);
     }
 }
 

@@ -49,5 +49,11 @@ namespace Service.Implementations
             _statusRepository.DeleteStatus(statusId);
             _statusRepository.Save();
         }
+
+        public StatusDto GetCurrentStatusForDevice(int deviceId)
+        {
+            var status = _statusRepository.GetCurrentStatusForDevice(deviceId);
+            return _mapper.Map<StatusDto>(status);
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace DAL.Interfaces
         void InsertStatus(Status status);
         void DeleteStatus(int statusId);
         void UpdateStatus(Status status);
+        Status GetCurrentStatusForDevice(int deviceId);
         void Save();
     }
 

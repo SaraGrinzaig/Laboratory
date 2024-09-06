@@ -51,6 +51,19 @@ namespace UI.Controllers
             return Ok(status);
         }
 
+        // GET: api/Status/current/{deviceId}
+        [HttpGet("current/{deviceId}")]
+        public ActionResult<StatusDto> GetCurrentStatusForDevice(int deviceId)
+        {
+            var status = _statusService.GetCurrentStatusForDevice(deviceId);
+            if (status == null)
+            {
+                return NotFound($"No status found for device with ID {deviceId}");
+            }
+            return Ok(status);
+        }
+
+
         // PUT: api/Status/{id}
         [HttpPut("{id}")]
         public ActionResult<StatusDto> UpdateStatus(int id, [FromBody] StatusDto status)

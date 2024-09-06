@@ -46,6 +46,14 @@ namespace DAL.Implementations
             }
         }
 
+        public Status GetCurrentStatusForDevice(int deviceId)
+        {
+            return _context.Statuses
+                .Where(s => s.DeviceId == deviceId)
+                .OrderByDescending(s => s.Id) 
+                .FirstOrDefault();
+        }
+
         public void Save()
         {
             _context.SaveChanges();
