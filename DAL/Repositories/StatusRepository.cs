@@ -2,7 +2,7 @@
 using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Implementations
+namespace DAL.Repositories
 {
     public class StatusRepository : IStatusRepository
     {
@@ -26,6 +26,7 @@ namespace DAL.Implementations
         public void InsertStatus(Status status)
         {
             _context.Statuses.Add(status);
+            _context.SaveChanges();
         }
 
         public void DeleteStatus(int statusId)
@@ -35,6 +36,7 @@ namespace DAL.Implementations
             {
                 _context.Statuses.Remove(status);
             }
+            _context.SaveChanges();
         }
 
         public void UpdateStatus(Status status)
@@ -44,6 +46,7 @@ namespace DAL.Implementations
             {
                 _context.Entry(existingStatus).CurrentValues.SetValues(status);
             }
+            _context.SaveChanges();
         }
 
         public Status GetCurrentStatusForDevice(int deviceId)
@@ -54,9 +57,5 @@ namespace DAL.Implementations
                 .FirstOrDefault();
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
     }
 }

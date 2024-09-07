@@ -2,7 +2,7 @@
 using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Implementations
+namespace DAL.Repositories
 {
     public class DeviceRepository : IDeviceRepository
     {
@@ -26,6 +26,7 @@ namespace DAL.Implementations
         public void InsertDevice(Device device)
         {
             _context.Devices.Add(device);
+            _context.SaveChanges();
         }
 
         public void DeleteDevice(int id)
@@ -35,6 +36,7 @@ namespace DAL.Implementations
             {
                 _context.Devices.Remove(device);
             }
+            _context.SaveChanges();
         }
 
         public void UpdateDevice(Device device)
@@ -44,11 +46,8 @@ namespace DAL.Implementations
             {
                 _context.Entry(existingDevice).CurrentValues.SetValues(device);
             }
-        }
-
-        public void Save()
-        {
             _context.SaveChanges();
         }
+
     }
 }

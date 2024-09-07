@@ -2,7 +2,7 @@
 using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Implementations
+namespace DAL.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
@@ -26,6 +26,7 @@ namespace DAL.Implementations
         public void InsertCustomer(Customer customer)
         {
             _context.Customers.Add(customer);
+            _context.SaveChanges();
         }
 
         public void DeleteCustomer(int customerId)
@@ -35,6 +36,7 @@ namespace DAL.Implementations
             {
                 _context.Customers.Remove(customer);
             }
+            _context.SaveChanges();
         }
 
         public void UpdateCustomer(Customer customer)
@@ -44,11 +46,8 @@ namespace DAL.Implementations
             {
                 _context.Entry(existingCustomer).CurrentValues.SetValues(customer);
             }
-        }
-
-        public void Save()
-        {
             _context.SaveChanges();
         }
+
     }
 }

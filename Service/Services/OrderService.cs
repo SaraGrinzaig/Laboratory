@@ -4,7 +4,7 @@ using DAL.Models;
 using Service.DTOs;
 using Service.Interfaces;
 
-namespace Service.Implementations
+namespace Service.Services
 {
     public class OrderService : IOrderService
     {
@@ -33,7 +33,6 @@ namespace Service.Implementations
         {
             var order = _mapper.Map<Order>(orderDto);
             _orderRepository.InsertOrder(order);
-            _orderRepository.Save();
             return _mapper.Map<OrderDto>(order);
         }
 
@@ -41,13 +40,11 @@ namespace Service.Implementations
         {
             var order = _mapper.Map<Order>(orderDto);
             _orderRepository.UpdateOrder(order);
-            _orderRepository.Save();
         }
 
         public void DeleteOrder(int orderId)
         {
             _orderRepository.DeleteOrder(orderId);
-            _orderRepository.Save();
         }
     }
 }

@@ -14,7 +14,6 @@ namespace DAL.Interfaces
         void InsertOrder(Order order);
         void DeleteOrder(int orderId);
         void UpdateOrder(Order order);
-        void Save();
     }
 
 }

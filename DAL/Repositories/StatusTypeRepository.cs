@@ -31,6 +31,7 @@ namespace DAL.Repositories
         public void InsertStatusType(StatusType statusType)
         {
             _context.StatusTypes.Add(statusType);
+            _context.SaveChanges();
         }
 
         public void UpdateStatusType(StatusType statusType)
@@ -40,6 +41,7 @@ namespace DAL.Repositories
             {
                 _context.Entry(existingStatusType).CurrentValues.SetValues(statusType);
             }
+            _context.SaveChanges();
         }
 
         public void DeleteStatusType(int id)
@@ -49,11 +51,8 @@ namespace DAL.Repositories
             {
                 _context.StatusTypes.Remove(statusType);
             }
-        }
-
-        public void Save()
-        {
             _context.SaveChanges();
         }
+
     }
 }

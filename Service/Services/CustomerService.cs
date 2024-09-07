@@ -4,7 +4,7 @@ using DAL.Models;
 using AutoMapper;
 using Service.DTOs;
 
-namespace Service.Implementations
+namespace Service.Services
 {
     public class CustomerService : ICustomerService
     {
@@ -33,7 +33,6 @@ namespace Service.Implementations
         {
             var customer = _mapper.Map<Customer>(customerDto);
             _customerRepository.InsertCustomer(customer);
-            _customerRepository.Save();
             return _mapper.Map<CustomerDto>(customer);
         }
 
@@ -41,13 +40,11 @@ namespace Service.Implementations
         {
             var customer = _mapper.Map<Customer>(customerDto);
             _customerRepository.UpdateCustomer(customer);
-            _customerRepository.Save();
         }
 
         public void DeleteCustomer(int customerId)
         {
             _customerRepository.DeleteCustomer(customerId);
-            _customerRepository.Save();
         }
     }
 }

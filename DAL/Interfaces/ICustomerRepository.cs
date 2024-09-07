@@ -14,7 +14,6 @@ namespace DAL.Interfaces
         void InsertCustomer(Customer customer);
         void DeleteCustomer(int customerId);
         void UpdateCustomer(Customer customer);
-        void Save();
     }
 
 }

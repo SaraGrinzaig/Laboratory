@@ -14,6 +14,5 @@ namespace DAL.Interfaces
         void InsertDevice(Device device);
         void DeleteDevice(int id);
         void UpdateDevice(Device device);
-        void Save();
     }
 }

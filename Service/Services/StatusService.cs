@@ -4,7 +4,7 @@ using DAL.Models;
 using AutoMapper;
 using Service.DTOs;
 
-namespace Service.Implementations
+namespace Service.Services
 {
     public class StatusService : IStatusService
     {
@@ -33,7 +33,6 @@ namespace Service.Implementations
         {
             var status = _mapper.Map<Status>(statusDto);
             _statusRepository.InsertStatus(status);
-            _statusRepository.Save();
             return _mapper.Map<StatusDto>(status);
         }
 
@@ -41,13 +40,11 @@ namespace Service.Implementations
         {
             var status = _mapper.Map<Status>(statusDto);
             _statusRepository.UpdateStatus(status);
-            _statusRepository.Save();
         }
 
         public void DeleteStatus(int statusId)
         {
             _statusRepository.DeleteStatus(statusId);
-            _statusRepository.Save();
         }
 
         public StatusDto GetCurrentStatusForDevice(int deviceId)

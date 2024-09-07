@@ -1,13 +1,12 @@
 using System.Reflection;
 using AutoMapper;
-using DAL.Implementations;
+using DAL.Repositories;
 using DAL.Interfaces;
 using DAL.Models;
-using DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Service.AutoMapper;
-using Service.Implementations;
+using Service.Services;
 using Service.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);

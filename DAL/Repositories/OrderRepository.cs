@@ -2,7 +2,7 @@
 using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Implementations
+namespace DAL.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
@@ -26,6 +26,7 @@ namespace DAL.Implementations
         public void InsertOrder(Order order)
         {
             _context.Orders.Add(order);
+            _context.SaveChanges();
         }
 
         public void DeleteOrder(int orderId)
@@ -35,6 +36,7 @@ namespace DAL.Implementations
             {
                 _context.Orders.Remove(order);
             }
+            _context.SaveChanges();
         }
 
         public void UpdateOrder(Order order)
@@ -44,11 +46,8 @@ namespace DAL.Implementations
             {
                 _context.Entry(existingOrder).CurrentValues.SetValues(order);
             }
-        }
-
-        public void Save()
-        {
             _context.SaveChanges();
         }
+
     }
 }

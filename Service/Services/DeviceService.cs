@@ -4,7 +4,7 @@ using DAL.Models;
 using AutoMapper;
 using Service.DTOs;
 
-namespace Service.Implementations
+namespace Service.Services
 {
     public class DeviceService : IDeviceService
     {
@@ -37,7 +37,6 @@ namespace Service.Implementations
         {
             var device = _mapper.Map<Device>(deviceDto);
             _deviceRepository.InsertDevice(device);
-            _deviceRepository.Save(); // שמירת השינויים - המכשיר נשמר וה-Id נוצר
 
             var entryStatusType = _statusTypeRepository.GetByName("נכנס");
             if (entryStatusType == null)
@@ -53,7 +52,6 @@ namespace Service.Implementations
             };
 
             _statusRepository.InsertStatus(status);
-            _statusRepository.Save();
 
             return _mapper.Map<DeviceDto>(device);
         }
@@ -63,13 +61,11 @@ namespace Service.Implementations
         {
             var device = _mapper.Map<Device>(deviceDto);
             _deviceRepository.UpdateDevice(device);
-            _deviceRepository.Save();
         }
 
         public void DeleteDevice(int deviceId)
         {
             _deviceRepository.DeleteDevice(deviceId);
-            _deviceRepository.Save();
         }
     }
 }

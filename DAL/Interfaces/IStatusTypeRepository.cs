@@ -10,6 +10,5 @@ namespace DAL.Interfaces
         void InsertStatusType(StatusType statusType);
         void UpdateStatusType(StatusType statusType);
         void DeleteStatusType(int id);
-        void Save();
     }
 }
