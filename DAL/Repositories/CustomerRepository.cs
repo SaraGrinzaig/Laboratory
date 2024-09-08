@@ -17,10 +17,7 @@ namespace DAL.Repositories
         public CustomerRepository(LaboratoryContext context)
         {
             _context = context;
-            _client = new HttpClient
-            {
-                BaseAddress = new Uri("https://api-v3.icount.co.il/")
-            };
+            _client = new HttpClient();
             var byteArray = Encoding.ASCII.GetBytes("gvia:gvia"); // החלף בפרטי ההזדהות המתאימים
             _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
         }
@@ -37,9 +34,9 @@ namespace DAL.Repositories
 
         public async Task InsertOrUpdateCustomer(Customer customer)
         {
-            // בדיקה ב-iCount האם הלקוח כבר קיים
             var url = $"https://api.icount.co.il/api/v3.php/client/get_list?cid=kenionLTD&user=gvia&pass=gvia&email={customer.Email}";
             HttpResponseMessage response = await _client.GetAsync(url);
+
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -58,37 +55,40 @@ namespace DAL.Repositories
                             Phone = "לא זמין"
                         };
 
-                        AddCustomer(updatedCustomer);
-
+                        await AddCustomerAsync(updatedCustomer);
                     }
                     else
                     {
-                        AddCustomer(customer);
+                        await AddCustomerAsync(customer);
                     }
                 }
                 else
                 {
-                    AddCustomer(customer);
+                    await AddCustomerAsync(customer);
                 }
             }
             else
             {
-                AddCustomer(customer);
+                await AddCustomerAsync(customer);
             }
         }
 
-        private void AddCustomer(Customer customer)
+        private async Task AddCustomerAsync(Customer customer)
         {
-            try
+            using (var context = new LaboratoryContext())
             {
-                _context.Customers.Add(customer);
-                _context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("An error occurred: " + ex.Message);  // הדפס את השגיאה לקונסול או תזמין אותה במערכת הלוגים שלך
+                try
+                {
+                    context.Customers.Add(customer);
+                    await context.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                }
             }
         }
+
 
         public void DeleteCustomer(int customerId)
         {
