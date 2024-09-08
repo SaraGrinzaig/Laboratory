@@ -26,38 +26,36 @@ namespace DAL.Repositories
         // Method to get the number of devices in the lab by day
         public Dictionary<DateTime, int> GetDevicesPerDay()
         {
+            var lastWeek = DateTime.Today.AddDays(-7);
             return _context.Statuses
-                .Where(s => s.StatusNavigation.StatusName == "נכנס" && s.StatusChangeDate.HasValue)
+                .Where(s => s.StatusNavigation.StatusName == "נכנס" && s.StatusChangeDate.HasValue && s.StatusChangeDate.Value.Date >= lastWeek)
                 .GroupBy(s => s.StatusChangeDate.Value.Date)
                 .Select(g => new { Day = g.Key, Count = g.Count() })
                 .ToDictionary(x => x.Day, x => x.Count);
         }
 
+
         // Method to get the number of devices by status
         public Dictionary<string, int> GetDevicesByStatus()
         {
-            // שליפת כל הסטטוסים כולל הניווט ל-StatusType
             var statuses = _context.Statuses
                 .Include(s => s.StatusNavigation)
-                .ToList(); // שליפת כל הסטטוסים בזיכרון
+                .ToList(); 
 
             // מציאת הסטטוס האחרון לכל מכשיר
             var latestStatuses = statuses
                 .GroupBy(s => s.DeviceId)
                 .Select(g => g.OrderByDescending(s => s.StatusChangeDate).FirstOrDefault()) // שליפת הסטטוס העדכני ביותר לכל מכשיר
-                .Where(s => s?.StatusNavigation != null) // בדיקה שהסטטוס וניווט הסטטוס אינם null
+                .Where(s => s?.StatusNavigation != null)
                 .ToList();
 
-            // קיבוץ לפי שם הסטטוס
             return latestStatuses
                 .GroupBy(s => s.StatusNavigation.StatusName)
                 .Select(g => new { Status = g.Key, Count = g.Count() })
-                .ToDictionary(x => x.Status, x => x.Count); // החזרת מילון עם שם הסטטוס ומספר המכשירים
+                .ToDictionary(x => x.Status, x => x.Count);
         }
 
-
-
-        // Additional method idea: Number of devices by device type (e.g., Phone, Computer, Other)
+        // Number of devices by device type (e.g., Phone, Computer, Other)
         public Dictionary<string, int> GetDevicesByType()
         {
             return _context.Devices

@@ -11,7 +11,7 @@ namespace DAL.Interfaces
     {
         IEnumerable<Customer> GetAllCustomers();
         Customer GetCustomerById(int customerId);
-        void InsertCustomer(Customer customer);
+        Task InsertOrUpdateCustomer(Customer customer);
         void DeleteCustomer(int customerId);
         void UpdateCustomer(Customer customer);
     }

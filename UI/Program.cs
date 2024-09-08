@@ -36,7 +36,9 @@ builder.Services.AddSingleton(mapper);
 
 // Configure DbContext
 builder.Services.AddDbContext<LaboratoryContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")),
+    ServiceLifetime.Scoped);
+
 
 // DI for DAL layer
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();

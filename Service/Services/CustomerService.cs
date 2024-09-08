@@ -32,7 +32,7 @@ namespace Service.Services
         public CustomerDto CreateCustomer(CustomerDto customerDto)
         {
             var customer = _mapper.Map<Customer>(customerDto);
-            _customerRepository.InsertCustomer(customer);
+            _customerRepository.InsertOrUpdateCustomer(customer);
             return _mapper.Map<CustomerDto>(customer);
         }
 
