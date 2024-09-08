@@ -34,6 +34,15 @@ namespace DAL.Repositories
 
         public async Task InsertOrUpdateCustomer(Customer customer)
         {
+            var existingCustomer = _context.Customers
+                .FirstOrDefault(c => c.Email.Equals(customer.Email, StringComparison.OrdinalIgnoreCase));
+
+            if (existingCustomer != null)
+            {
+                Console.WriteLine("Customer already exists in the system.");
+                return;
+            }
+
             var url = $"https://api.icount.co.il/api/v3.php/client/get_list?cid=kenionLTD&user=gvia&pass=gvia&email={customer.Email}";
             HttpResponseMessage response = await _client.GetAsync(url);
 
