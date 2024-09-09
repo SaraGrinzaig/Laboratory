@@ -55,7 +55,7 @@ namespace DAL.Repositories
                 .ToDictionary(x => x.Status, x => x.Count);
         }
 
-        // Number of devices by device type (e.g., Phone, Computer, Other)
+        // Number of devices by device type (Phone, Computer, Other)
         public Dictionary<string, int> GetDevicesByType()
         {
             return _context.Devices

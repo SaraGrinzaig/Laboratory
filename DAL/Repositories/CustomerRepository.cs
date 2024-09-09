@@ -35,7 +35,7 @@ namespace DAL.Repositories
         public async Task InsertOrUpdateCustomer(Customer customer)
         {
             var existingCustomer = _context.Customers
-                .FirstOrDefault(c => c.Email.Equals(customer.Email, StringComparison.OrdinalIgnoreCase));
+                .FirstOrDefault(c => c.Email.Trim().ToLower() == customer.Email.Trim().ToLower());
 
             if (existingCustomer != null)
             {
@@ -55,7 +55,7 @@ namespace DAL.Repositories
                     var clientsDict = clientsObj.ToObject<Dictionary<string, dynamic>>();
                     dynamic clientData = clientsDict.Values.FirstOrDefault();
 
-                    if (clientData != null && clientData.email != null && clientData.email.ToString().Trim().Equals(customer.Email.Trim(), StringComparison.OrdinalIgnoreCase))
+                    if (clientData != null && clientData.email != null && clientData.email.ToString().Trim().ToLower() == customer.Email.Trim().ToLower())
                     {
                         var updatedCustomer = new Customer
                         {
@@ -82,7 +82,7 @@ namespace DAL.Repositories
             }
         }
 
-        private async Task AddCustomerAsync(Customer customer)
+        public async Task<Customer> AddCustomerAsync(Customer customer)
         {
             using (var context = new LaboratoryContext())
             {
@@ -90,13 +90,17 @@ namespace DAL.Repositories
                 {
                     context.Customers.Add(customer);
                     await context.SaveChangesAsync();
+                    return customer; 
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("An error occurred: " + ex.Message);
+                    return null;
                 }
             }
         }
+
+
 
 
         public void DeleteCustomer(int customerId)
